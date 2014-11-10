@@ -6,6 +6,6 @@ export default Ember.Route.extend({
       {description: 'First log event'},
       {description: 'Second log event'},
       {description: 'Third log event'}
-    ]
+    ];
   }
 });
