@@ -1,6 +1,8 @@
-{{input placeholder="Filter by email" value=emailFilter}}
-{{#link-to "events" (query-params email=emailFilter)}}Filter{{/link-to}}
-<a href="#" {{action "reset"}}>Reset</a>
+<form {{action "filter" emailFilter}}>
+  {{input placeholder="Filter by email" value=emailFilter}}
+  <input type="submit" value="Filter">
+  <button href="#" {{action "reset"}}>Reset</button>
+</form>
 <div class="row">
   <div class="column">
     <ul class="events">
