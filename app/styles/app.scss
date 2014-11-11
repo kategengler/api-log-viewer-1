@@ -2,16 +2,40 @@
 @import "typography";
 
 body, html {
-  padding: 1em;
+  box-sizing: border-box;
 }
 .row {
+  height: 1000px;
+  border-top: 1px solid #ccc;
 }
 
 .column {
-  width: 32%;
+  width: 33%;
+  border-right: 1px solid #ccc;
   float: left;
+  overflow-y: auto;
+  height: 100%;
 }
 
 ul {
   list-style: none;
+  li a {
+    display: inline-block;
+    padding: .6em;
+  }
+}
+
+.active {
+  background-color: #3b69a7;
+  color: #FFF;
+}
+
+.key {
+  font-weight: bold;
+}
+
+.request-data {
+  li {
+    padding: .6em;
+  }
 }

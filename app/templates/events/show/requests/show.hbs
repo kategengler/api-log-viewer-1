@@ -1,0 +1,39 @@
+<h3>Request Data</h3>
+<ul class="request-data">
+  <li>
+    <span class="key">Method:</span>
+    <span class="value">{{model.requestMethod}}</span>
+  </li>
+  <li>
+    <span class="key">URL:</span>
+    <span class="value">{{model.requestUrl}}</span>
+  </li>
+  <li>
+    <span class="key">Time</span>
+    <span class="value">{{model.occurredAt}}</span>
+  </li>
+  <li>
+    <span class="key">Headers:</span>
+    <pre>{{model.requestHeaders}}</pre>
+  </li>
+  <li>
+    <span class="key">Body:</span>
+    <pre>{{model.requestBody}}</pre>
+  </li>
+</ul>
+<h3>Response Data</h3>
+<ul class="request-data">
+  <li>
+    <span class="key">Status:</span>
+    <span class="value">{{model.responseStatus}}</span>
+  </li>
+  <li>
+    <span class="key">Headers:</span>
+    <pre class="value">{{model.responseHeaders}}</pre>
+  </li>
+  <li>
+    <span class="key">Body:</span>
+    <pre class="value">{{model.responseBody}}</pre>
+  </li>
+</ul>
+{{outlet}}
