@@ -1,7 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function(){
-    return this.store.find('event', {filter: 'recent'});
+  queryParams: {
+    email: { refreshModel: true }
+  },
+  model: function(params){
+    var defaultFilters = {filter: 'recent'};
+    var filters = params || defaultFilters;
+    return this.store.find('event', filters);
   }
 });

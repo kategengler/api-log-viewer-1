@@ -1,3 +1,5 @@
+{{input placeholder="Filter by email" value=emailFilter}}
+{{#link-to "events" (query-params email=emailFilter)}}Filter{{/link-to}}
 <div class="row">
   <div class="column">
     <ul class="events">
