@@ -9,7 +9,11 @@
   <div class="column">
     <ul class="events">
       {{#each event in model}}
-        <li>{{#link-to "events.show" event}}{{event.occurredAt}} - {{event.description}}{{/link-to}}</li>
+        <li class="spec-event">
+          {{#link-to "events.show" event}}
+            {{event.occurredAt}} - {{event.description}}
+          {{/link-to}}
+        </li>
       {{/each}}
       <li style="background-color: #adadad">&nbsp;</li>
     </ul>

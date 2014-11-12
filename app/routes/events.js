@@ -8,7 +8,10 @@ export default Ember.Route.extend({
   },
   model: function(params){
     var defaultFilters = {filter: 'recent'};
-    var filters = params || defaultFilters;
+    var filters = defaultFilters;
+    if(params.email || params.start || params.end){
+      filters = params;
+    }
     return this.store.find('event', filters);
   }
 });
