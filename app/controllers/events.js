@@ -1,23 +1,22 @@
 import Ember from 'ember';
 
+function dateTimeFromNaturalLanguage( strProp ){
+  return Ember.computed( strProp, function(){
+    var str = this.get(strProp);
+    if(str){
+      return window.chrono.parseDate( str ).toISOString();
+    }
+  });
+}
+
 export default Ember.ArrayController.extend({
   queryParams: ['email', 'start', 'end'],
   email: null,
   start: null,
   end: null,
   emailFilter: Ember.computed.oneWay('email'),
-  startDateTime: function(){
-    var startTime = this.get('startTime');
-    if(startTime){
-      return window.chrono.parseDate( startTime ).toISOString();
-    }
-  }.property('startTime'),
-  endDateTime: function(){
-    var endTime = this.get('endTime');
-    if(endTime){
-      return window.chrono.parseDate( endTime ).toISOString();
-    }
-  }.property('endTime'),
+  startDateTime: dateTimeFromNaturalLanguage('startTime'),
+  endDateTime: dateTimeFromNaturalLanguage('endTime'),
   filters: function(){
     var filters = {};
     var emailFilter = this.get('emailFilter');
