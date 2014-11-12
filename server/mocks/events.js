@@ -8,6 +8,16 @@ module.exports = function(app) {
         return item.user_email == req.query.email
       });
     }
+    if(req.query.start){
+      resp = resp.filter(function(item){
+        return new Date(item.occurred_at) >=  new Date(req.query.start);
+      });
+    }
+    if(req.query.end){
+      resp = resp.filter(function(item){
+        return new Date(item.occurred_at) <= new Date(req.query.end);
+      });
+    }
     res.send({"events": resp});
   });
   app.use('/api/events', eventsRouter);
