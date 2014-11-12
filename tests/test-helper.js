@@ -12,6 +12,6 @@ QUnit.config.urlConfig.push({ id: 'nocontainer', label: 'Hide container'});
 var containerVisibility = QUnit.urlParams.nocontainer ? 'hidden' : 'visible';
 document.getElementById('ember-testing-container').style.visibility = containerVisibility;
 
-Ember.RSVP.configure( 'onerror', function ( error ) {
-  Ember.Logger.assert( false, error );
+Ember.RSVP.on( 'error', function ( error ) {
+  console.log(error)
 });

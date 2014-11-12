@@ -100,3 +100,19 @@ test('requests display their details', function(){
     ok(find('.spec-request-data'), 'Should display the request data');
   });
 });
+
+test('can filter by email', function(){
+  expect(2);
+  mockEventsRequestNoFilters();
+  visit('/events');
+  andThen(function(){
+    mockRequest(server, "get", "/api/events", {events: [Responses.events[0]]}, 200, function(body, request){
+      equal(request.queryParams.email, 'epperson@fundinggates.com');
+    });
+  });
+  fillIn('.spec-email-filter', 'epperson@fundinggates.com');
+  click('.spec-filter');
+  andThen(function(){
+    equal(find('.spec-event').length, 1, 'Events returned by the filter should display');
+  });
+});

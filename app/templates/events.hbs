@@ -1,8 +1,8 @@
 <form {{action "filter" filters on="submit"}}>
-  {{input placeholder="Filter by email" value=emailFilter}}
+  {{input placeholder="Filter by email" value=emailFilter class="spec-email-filter"}}
   {{input placeholder="Ex: yesterday at 2pm, 1/1/2013 1:10:13" value=startTime}}
   {{input placeholder="Ex: today at 4pm, 1/1/2013 14:43:00" value=endTime}}
-  <input type="submit" value="Filter">
+  <input type="submit" value="Filter" class="spec-filter">
   <button href="#" {{action "reset"}}>Reset</button>
 </form>
 <div class="row">
