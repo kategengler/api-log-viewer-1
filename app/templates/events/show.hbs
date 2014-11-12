@@ -1,7 +1,7 @@
 <div class="column">
   <ul>
     {{#each request in model.requests}}
-      <li>
+      <li class="spec-request">
         {{#link-to "events.show.requests.show" request}}
           {{request.occurredAt}} - {{request.requestUrl}}
         {{/link-to}}

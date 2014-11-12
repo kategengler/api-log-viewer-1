@@ -32,12 +32,6 @@ var Responses = {
 module('Acceptance: Events', {
   setup: function() {
     server = new Pretender(function(){
-      this.get('/api/requests/:id', function(req){
-        var request = Responses.request;
-        request.id = req.params.id;
-        var response = {request: request};
-        return [200, {"Content-Type": "application/json"}, JSON.stringify(response)];
-      });
       this.unhandledRequest = function(verb, path, request) {
         ok( false, "Request not handled: " + verb + " " + path);
       };
@@ -81,5 +75,28 @@ test('recent events display', function(){
 
   andThen(function(){
     equal(find('.spec-event').length, 113, 'Recent events should display');
+  });
+});
+
+test('recent events display their requests', function(){
+  mockEventsRequestNoFilters();
+  mockRequest(server, "get", "/api/requests/:request_id", {request: Responses.request});
+  visit('/events');
+  click('.spec-event:first a');
+  andThen(function(){
+    equal('/events/5268', currentURL());
+    ok(find('.spec-request:contains(' + Responses.request.request_url + ')'), 'Should display the request URL');
+  });
+});
+
+test('requests display their details', function(){
+  mockEventsRequestNoFilters();
+  mockRequest(server, "get", "/api/requests/:request_id", {request: Responses.request});
+  visit('/events');
+  click('.spec-event:first a');
+  click('.spec-request:first a');
+  andThen(function(){
+    equal('/events/5268/requests/12112', currentURL());
+    ok(find('.spec-request-data'), 'Should display the request data');
   });
 });
