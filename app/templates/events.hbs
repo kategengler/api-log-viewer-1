@@ -1,4 +1,4 @@
-<form {{action "filter" emailFilter}}>
+<form {{action "filter" emailFilter on="submit"}}>
   {{input placeholder="Filter by email" value=emailFilter}}
   <input type="submit" value="Filter">
   <button href="#" {{action "reset"}}>Reset</button>
@@ -9,6 +9,7 @@
       {{#each event in model}}
         <li>{{#link-to "events.show" event}}{{event.occurredAt}} - {{event.description}}{{/link-to}}</li>
       {{/each}}
+      <li style="background-color: #adadad">&nbsp;</li>
     </ul>
   </div>
   {{outlet}}

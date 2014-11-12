@@ -4,17 +4,31 @@
 body, html {
   box-sizing: border-box;
 }
+
 .row {
-  height: 1000px;
+  position: fixed;
+  top: 150px;
+  left: 0; right: 0;
+  bottom: 0;
   border-top: 1px solid #ccc;
 }
 
 .column {
+  position: absolute;
+  bottom: 0;
   width: 33%;
-  border-right: 1px solid #ccc;
-  float: left;
-  overflow-y: auto;
   height: 100%;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+.column:nth-child(2) {
+  left: 33%;
+}
+
+.column:nth-child(3) {
+  left: auto;
+  right: 0
 }
 
 ul {
@@ -37,5 +51,21 @@ li .active {
 .request-data {
   li {
     padding: .6em;
+  }
+}
+
+input, button {
+  font-size: 1em;
+  padding: .5em;
+  border: 1px solid #ccc;
+}
+
+input[type=submit], button {
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #adadad;
   }
 }
