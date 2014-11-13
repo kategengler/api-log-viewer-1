@@ -18,6 +18,14 @@
   {{/if}}
 
   <a href="#" {{action "saveFilter"}}>Save</a>
+
+  {{view "select"
+    content=savedFilters
+    optionValuePath="content"
+    optionLabelPath="content.description"
+    value=selectedFilter
+    prompt="Please select a saved filter"
+  }}
 {{/if}}
 <div class="row">
   <div class="column">

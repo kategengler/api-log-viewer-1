@@ -21,6 +21,15 @@ export default Ember.ArrayController.extend({
   startDateTime: dateTimeFromNaturalLanguage('startTime'),
   endDateTime: dateTimeFromNaturalLanguage('endTime'),
   isFiltering: Ember.computed.or('email', 'start', 'end'),
+  savedFilters: function(){
+    return this.store.find('filter');
+  }.property(),
+  setFilter: function(){
+    var filter = this.get('selectedFilter');
+    this.set('email', filter.get('email'));
+    this.set('start', filter.get('start'));
+    this.set('end', filter.get('end'));
+  }.observes('selectedFilter'),
   filters: function(){
     var filters = {};
     var emailFilter = this.get('emailFilter');
