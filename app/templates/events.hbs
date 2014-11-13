@@ -5,6 +5,18 @@
   <input type="submit" value="Filter" class="spec-filter">
   <button href="#" {{action "reset"}}>Reset</button>
 </form>
+{{#if isFiltering}}
+  <label>Filtering By:</label>
+  {{#if email}}
+    <label>Email: </label>{{email}}
+  {{/if}}
+  {{#if start}}
+    <label>Start Time:</label>{{start}}
+  {{/if}}
+  {{#if end}}
+    <label>End Time:</label>{{end}}
+  {{/if}}
+{{/if}}
 <div class="row">
   <div class="column">
     <ul class="events">

@@ -74,3 +74,11 @@ input[type=submit], button {
     border-color: #adadad;
   }
 }
+
+form {
+  display: inline-block;
+}
+
+label {
+  font-weight: bold;
+}
