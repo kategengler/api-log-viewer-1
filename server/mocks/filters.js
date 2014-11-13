@@ -2,9 +2,22 @@ module.exports = function(app) {
   var express = require('express');
   var filtersRouter = express.Router();
   filtersRouter.post('/', function(req, res) {
-    var filter = req.body.filter;
-    filter.id = 22;
-    res.send({"filter": filter});
+    function randomInt (low, high) {
+      return Math.floor(Math.random() * (high - low) + low);
+    }
+
+    var shouldFail = randomInt(0, 2);
+    setTimeout(function(){
+      if(shouldFail){
+        res.status(500);
+        res.send('Failure!');
+      }
+      else {
+        var filter = req.body.filter;
+        filter.id = 22;
+        res.send({"filter": filter});
+      }
+    }, 1000);
   });
 
   filtersRouter.get('/', function(req, res) {

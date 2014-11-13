@@ -15,6 +15,7 @@ export default Ember.ArrayController.extend({
   email: null,
   start: null,
   end: null,
+  isSaving: false,
   emailFilter: Ember.computed.oneWay('email'),
   startTime: Ember.computed.oneWay('start'),
   endTime: Ember.computed.oneWay('end'),
@@ -51,12 +52,21 @@ export default Ember.ArrayController.extend({
       this.set('endTime', null);
     },
     saveFilter: function(){
+      var controller = this;
+      controller.set('failedToSave', false);
+      controller.set('isSaving', true);
       var filters = this.store.createRecord('filter', {
         email: this.get('email'),
         start: this.get('start'),
         end: this.get('end')
       });
-      filters.save();
+      filters.save()
+        .catch(function(){
+          controller.set('failedToSave', true);
+        })
+        .finally(function(){
+          controller.set('isSaving', false);
+        });
     }
   }
 });

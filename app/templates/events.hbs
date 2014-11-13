@@ -17,8 +17,16 @@
     <label>End Time:</label>{{end}}
   {{/if}}
 
-  <a href="#" {{action "saveFilter"}}>Save</a>
-
+  <a href="#" {{action "saveFilter"}}>
+    {{#if isSaving}}
+      Saving...
+    {{else}}
+      Save
+    {{/if}}
+  </a>
+  {{#if failedToSave}}
+    Failed to Save, try again!
+  {{/if}}
   {{view "select"
     content=savedFilters
     optionValuePath="content"
