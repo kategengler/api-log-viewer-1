@@ -15,6 +15,9 @@ export default Ember.ArrayController.extend({
   email: null,
   start: null,
   end: null,
+  emailFilter: Ember.computed.oneWay('email'),
+  startTime: Ember.computed.oneWay('start'),
+  endTime: Ember.computed.oneWay('end'),
   startDateTime: dateTimeFromNaturalLanguage('startTime'),
   endDateTime: dateTimeFromNaturalLanguage('endTime'),
   isFiltering: Ember.computed.or('email', 'start', 'end'),
@@ -37,6 +40,14 @@ export default Ember.ArrayController.extend({
       this.set('emailFilter', null);
       this.set('startTime', null);
       this.set('endTime', null);
+    },
+    saveFilter: function(){
+      var filters = this.store.createRecord('filter', {
+        email: this.get('email'),
+        start: this.get('start'),
+        end: this.get('end')
+      });
+      filters.save();
     }
   }
 });
