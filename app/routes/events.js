@@ -14,6 +14,9 @@ export default Ember.Route.extend({
     }
     return this.store.find('event', filters);
   },
+  afterModel: function(){
+    Ember.run.later(this, this.refresh, 5000);
+  },
   actions : {
     refresh: function(callback){
       this.refresh();
