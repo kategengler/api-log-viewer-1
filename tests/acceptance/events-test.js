@@ -116,3 +116,22 @@ test('can filter by email', function(){
     equal(find('.spec-event').length, 1, 'Events returned by the filter should display');
   });
 });
+
+test('can filter by times', function(){
+  expect(3);
+  mockEventsRequestNoFilters();
+  visit('/events');
+  andThen(function(){
+    mockRequest(server, "get", "/api/events", {events: [Responses.events[0]]}, 200, function(body, request){
+      equal(window.moment.utc(request.queryParams.start ).toString(), window.moment.utc("2014-11-09T17:00:00.000Z" ).toString());
+      equal(window.moment.utc(request.queryParams.end ).toString(), window.moment.utc("2014-11-14T17:00:00.000Z" ).toString());
+    });
+  });
+  fillIn('.spec-start-time-filter', 'Nov 9 2014');
+  fillIn('.spec-end-time-filter', 'Nov 14 2014');
+  click('.spec-filter');
+
+  andThen(function(){
+    equal(find('.spec-event').length, 1, 'Events returned by the filter should display');
+  });
+});
