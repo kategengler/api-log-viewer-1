@@ -8,7 +8,7 @@
 <div class="row">
   <div class="column">
     <ul class="events">
-      {{#each event in model}}
+      {{#each event in controller}}
         <li class="spec-event">
           {{#link-to "events.show" event}}
             {{event.occurredAt}} - {{event.description}}

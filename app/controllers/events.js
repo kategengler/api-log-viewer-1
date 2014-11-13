@@ -10,6 +10,7 @@ function dateTimeFromNaturalLanguage( strProp ){
 }
 
 export default Ember.ArrayController.extend({
+  sortProperties: ['occurredAt'],
   queryParams: ['email', 'start', 'end'],
   email: null,
   start: null,
