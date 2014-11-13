@@ -13,5 +13,5 @@ var containerVisibility = QUnit.urlParams.nocontainer ? 'hidden' : 'visible';
 document.getElementById('ember-testing-container').style.visibility = containerVisibility;
 
 Ember.RSVP.on( 'error', function ( error ) {
-  console.log(error)
+  console.log(error);
 });
