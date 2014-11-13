@@ -13,5 +13,11 @@ export default Ember.Route.extend({
       filters = params;
     }
     return this.store.find('event', filters);
+  },
+  actions : {
+    refresh: function(callback){
+      this.refresh();
+      callback();
+    }
   }
 });
