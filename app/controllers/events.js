@@ -42,6 +42,19 @@ export default Ember.ArrayController.extend({
     if(endDateTime){ filters.end = endDateTime; }
     return filters;
   }.property('emailFilter', 'startDateTime', 'endDateTime'),
+  chartData: function(){
+    var hours = {};
+    this.get('model' ).forEach(function(item){
+      var hour = window.moment(item.get('occurredAt' )).hour();
+      if(hours[hour]){
+        hours[hour]++;
+      }
+      else{
+        hours[hour] = 1;
+      }
+    });
+    return hours;
+  }.property('model.@each.occurredAt'),
   actions: {
     reset: function(){
       this.set('email', null);

@@ -16,7 +16,7 @@ export default Ember.Route.extend({
   },
   afterModel: function(){
     if(!Ember.testing){
-      Ember.run.later(this, this.refresh, 5000);
+//      Ember.run.later(this, this.refresh, 5000);
     }
   }
 });
