@@ -38,6 +38,8 @@ module('Acceptance: Events', {
     });
 
     App = startApp();
+
+    mockRequest(server, "get", "/api/filters", {filters: [{id: 1, email: 'test@example.com'}]});
   },
   teardown: function() {
     Ember.run(App, 'destroy');
@@ -84,7 +86,7 @@ test('recent events display their requests', function(){
   visit('/events');
   click('.spec-event:first a');
   andThen(function(){
-    equal('/events/5268', currentURL());
+    equal('/events/5264', currentURL());
     ok(find('.spec-request:contains(' + Responses.request.request_url + ')'), 'Should display the request URL');
   });
 });
@@ -96,7 +98,7 @@ test('requests display their details', function(){
   click('.spec-event:first a');
   click('.spec-request:first a');
   andThen(function(){
-    equal('/events/5268/requests/12112', currentURL());
+    equal('/events/5264/requests/12105', currentURL());
     ok(find('.spec-request-data'), 'Should display the request data');
   });
 });
